@@ -45,7 +45,7 @@ const Post = () => {
   };
 
   const onHandleSubmit = () => {
-    if (squakInput.length == 0 || squakInput.length > 255) return;
+    if (squakInput.length === 0 || squakInput.length > 255) return;
     axios
       .post("https://squakbox-app.azurewebsites.net/", {
         content: squakInput,
@@ -61,7 +61,15 @@ const Post = () => {
 
   return (
     <>
-      <textarea value={squakInput} onChange={onHandleChange} />
+      <textarea
+        value={squakInput}
+        onChange={onHandleChange}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            onHandleSubmit();
+          }
+        }}
+      />
       <button onClick={onHandleSubmit} disabled={!valid}>
         Submit
       </button>

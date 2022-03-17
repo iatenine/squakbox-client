@@ -15,11 +15,13 @@ const Display = (props: { posts: Squak[] }) => {
     return date.toLocaleString();
   };
 
-  const postList = props.posts.map((post: Squak) => (
-    <div key={post.id}>
-      <h3>{getDateFromTimestamp(post.date) + ": " + post.content}</h3>
-    </div>
-  ));
+  const postList = props.posts
+    .map((post: Squak) => (
+      <div key={post.id}>
+        <h3>{getDateFromTimestamp(post.date) + ": " + post.content}</h3>
+      </div>
+    ))
+    .reverse();
 
   return <div>{postList}</div>;
 };
